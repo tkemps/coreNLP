@@ -14,4 +14,4 @@ cabal.sandbox.config
 history
 TAGS
 .stack-work
-.code-workspace
+*.code-workspace
