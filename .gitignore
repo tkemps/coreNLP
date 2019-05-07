@@ -1,0 +1,17 @@
+dist
+cabal-dev
+*.swp
+*.o
+*.hi
+*.chi
+*.chs.h
+.virthualenv
+*~
+.hsenv_*
+dist_*
+.cabal-sandbox
+cabal.sandbox.config
+history
+TAGS
+.stack-work
+.code-workspace
