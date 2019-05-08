@@ -1,12 +1,6 @@
-{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE OverloadedLabels, DuplicateRecordFields, RecordWildCards #-}
+{-# LANGUAGE RecordWildCards #-}
 module CoreNLP.Token where
 
 import Data.Aeson.Compat
@@ -14,7 +8,7 @@ import           Data.Text (Text)
 import Data.Text.Prettyprint.Doc
 import GHC.Generics
 
--- | POS descriptions:
+-- | CoreNLP splits sentences or texts into tokens. The field POS contains part of speech tags according to the following list:
 --
 --      1.      CC      Coordinating conjunction
 --      2.      CD      Cardinal number
@@ -53,17 +47,17 @@ import GHC.Generics
 --      35.     WP$     Possessive wh-pronoun
 --      36.     WRB     Wh-adverb
 data Token = Token {
-    index :: Int,
-    word :: Text,
-    originalText :: Text,
-    lemma :: Text,
-    characterOffsetBegin :: Int,
-    characterOffsetEnd :: Int,
-    pos :: Text,
-    ner :: Text,
-    before :: Text,
-    after :: Text}
-        deriving (Eq, Show, Generic)
+    index :: Int, -- ^ This indexes a token number inside a sentence. Standardly, tokens are indexed within a sentence starting at 1 (not 0: we follow common parlance whereby we speak of the first word of a sentence). This is generally an individual word or feature index - it is local, and may not be uniquely identifying without other identifiers such as sentence and doc. However, if these are the same, the index annotation should be a unique identifier for differentiating objects.
+    word :: Text, -- ^ The word that forms this token.
+    originalText :: Text, -- ^ Original text from which this token is derived.
+    lemma :: Text, -- ^ Lemmatized form of the token (simplified to basic form)
+    characterOffsetBegin :: Int, -- ^ Starting position of this token
+    characterOffsetEnd :: Int, -- ^ Ending position of this token
+    pos :: Text, -- ^ POS (part of speech) label
+    ner :: Text, -- ^ Type of NER detected, see 'CoreNLP.NER.EntityMentions' for the NER details.
+    before :: Text, -- ^ The text directly preceding this token -- usually a space.
+    after :: Text -- ^ The text directly after this token -- usually a space, comma or full stop.
+} deriving (Eq, Show, Generic)
 
 instance ToJSON Token
 instance FromJSON Token
@@ -82,4 +76,3 @@ instance Pretty Token where
                                     <+> pretty word <+> ">>"
                                     <+> dquotes (pretty after)
                               ]
-

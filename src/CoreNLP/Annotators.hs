@@ -2,7 +2,9 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE OverloadedStrings #-}
-module CoreNLP.Annotators (Annotator(..)) where
+module CoreNLP.Annotators (
+    Annotator(..)
+) where
 
 import Data.Aeson.Compat
 import Data.Either

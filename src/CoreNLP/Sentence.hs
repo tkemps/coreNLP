@@ -11,41 +11,14 @@
 module CoreNLP.Sentence where
 
 import Data.Aeson.Compat
-import Data.Aeson.TH
-import           Data.Text (Text)
+import Data.Text (Text)
 import Data.Text.Prettyprint.Doc
 import GHC.Generics
 
 import CoreNLP.Token (Token)
-import CoreNLP.THUtil
+import CoreNLP.NER
 
-data Timex = Timex {
-    tid :: Text,
-    typ :: Text,
-    value :: Text
-} deriving (Eq, Show, Generic)
-
-$(deriveJSON defaultOptions{fieldLabelModifier = coreNlpFieldLabelModifier} ''Timex)
-
-data EntityMentions = EntityMentions {
-    docTokenBegin :: Int,
-    docTokenEnd :: Int,
-    tokenBegin :: Int,
-    tokenEnd :: Int,
-    text :: Text,
-    characterOffsetBegin :: Int,
-    characterOffsetEnd :: Int,
-    ner :: Text,
-    normalizedNER :: Maybe Text,
-    timex :: Maybe Timex
-} deriving (Eq, Show, Generic)
-
-instance ToJSON EntityMentions
-instance FromJSON EntityMentions
-
-instance Pretty EntityMentions where
-    pretty em = viaShow em
-
+-- |A representation of a single Sentence. Although it is possible to create a sentence directly from text, it is advisable to create a document instead and operate on the document directly.
 data Sentence = Sentence {
     index :: Int,
     parse :: Maybe Text,
@@ -56,6 +29,7 @@ data Sentence = Sentence {
 instance ToJSON Sentence
 instance FromJSON Sentence
 
+-- |A representation of a Document. Most blobs of raw text should become documents.
 data Document = Document {
     docId :: Maybe Text,
     sentences :: [Sentence]
