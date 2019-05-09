@@ -38,9 +38,21 @@ executable x1
                        http-client,
                        aeson, aeson-compat,
                        attoparsec,
-                       bytestring, text,
-                       blaze-html, blaze-markup,
+                       text,
                        wai, warp,
                        mtl,
                        prettyprinter,
                        coreNLP
+
+test-suite t1
+  Type:                 exitcode-stdio-1.0
+  Default-Language:     Haskell2010
+  Hs-Source-Dirs:       test
+  Ghc-Options:          -Wall
+  Main-Is:              Spec.hs
+  other-modules:        Test01Spec
+  Build-Depends:        base
+                      , text
+                      , hspec, hspec-contrib, QuickCheck, HUnit
+                      , prettyprinter
+                      , coreNLP

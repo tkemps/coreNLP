@@ -13,7 +13,7 @@ import CoreNLP.THUtil
 data Timex = Timex {
     tid :: Text,
     typ :: Text,
-    value :: Text
+    value :: Maybe Text
 } deriving (Eq, Show, Generic)
 
 $(deriveJSON defaultOptions{fieldLabelModifier = coreNlpFieldLabelModifier} ''Timex)

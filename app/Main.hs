@@ -1,15 +1,7 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE OverloadedLabels, DuplicateRecordFields, RecordWildCards #-}
 module Main where
 
-import           Data.Text (Text)
+import Data.Text (Text)
 import Data.Text.Prettyprint.Doc (layoutPretty, defaultLayoutOptions, pretty)
 import Data.Text.Prettyprint.Doc.Render.String (renderString)
 

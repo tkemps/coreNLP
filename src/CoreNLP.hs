@@ -2,7 +2,7 @@
 {-# LANGUAGE TypeOperators #-}
 {-# LANGUAGE RecordWildCards #-}
 module CoreNLP (
-    withCoreNLP, analyzeText, mkCoreNlpEnv, liftIO, liftIO'
+    withCoreNLP, analyzeText, mkCoreNlpEnv, liftIO, liftIO', ClientEnv(..), ClientM
 ) where
 
 import Data.Proxy

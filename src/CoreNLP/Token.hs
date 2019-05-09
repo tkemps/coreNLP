@@ -50,7 +50,7 @@ data Token = Token {
     index :: Int, -- ^ This indexes a token number inside a sentence. Standardly, tokens are indexed within a sentence starting at 1 (not 0: we follow common parlance whereby we speak of the first word of a sentence). This is generally an individual word or feature index - it is local, and may not be uniquely identifying without other identifiers such as sentence and doc. However, if these are the same, the index annotation should be a unique identifier for differentiating objects.
     word :: Text, -- ^ The word that forms this token.
     originalText :: Text, -- ^ Original text from which this token is derived.
-    lemma :: Text, -- ^ Lemmatized form of the token (simplified to basic form)
+    lemma :: Text, -- ^ Lemmatized form of the token (morphological stem, i.e. simplified to basic form)
     characterOffsetBegin :: Int, -- ^ Starting position of this token
     characterOffsetEnd :: Int, -- ^ Ending position of this token
     pos :: Text, -- ^ POS (part of speech) label
