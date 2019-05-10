@@ -19,6 +19,7 @@ library
   other-modules:       CoreNLP.Util
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5,
+                       lens,
                        servant, servant-client, servant-server,
                        http-client,
                        aeson, aeson-compat,
@@ -52,6 +53,8 @@ test-suite t1
   Main-Is:              Spec.hs
   other-modules:        Test01Spec
   Build-Depends:        base
+                      , containers
+                      , lens
                       , text
                       , hspec, hspec-contrib, QuickCheck, HUnit
                       , prettyprinter
